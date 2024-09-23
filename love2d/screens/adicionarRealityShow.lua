@@ -42,9 +42,7 @@ local fields = {
     {display = "Status", key = "status"}
 }
 
-function menu.load(wasCalled)
-    wasCalled = wasCalled or nil
-
+function menu.load()
     -- Carregar a imagem do background
     background = love.graphics.newImage("assets/background.png")
     assert(background, "Erro ao carregar a imagem do background!")
@@ -71,16 +69,6 @@ function menu.load(wasCalled)
     -- Calcula a altura da barra de rolagem
     scrollbarHeight = math.max(visibleFilmCount / #allRealityShows * screenHeight * 0.5, 20)
     totalHeight = #allRealityShows * filmHeight
-
-    if wasCalled then
-        local selectedFilm = allRealityShows[wasCalled]
-        selectedRSIndex = wasCalled
-
-        -- Preenche os campos de texto com os valores do filme selecionado
-        for _, field in ipairs(fields) do
-            inputFields[field.key] = selectedFilm[field.key] or ""
-        end
-    end
 end
 
 function updateButtonDimensions()
@@ -124,15 +112,15 @@ end
 function menu.mousepressed(x, y, button)
     if button == 1 then
         -- Verificar se o clique foi nos botões de salvar ou excluir
-        local screenWidth = love.graphics.getWidth()
+        local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
         local attributesDivWidth = screenWidth * 0.35
         local attributesDivHeight = love.graphics.getHeight() * 0.8
         local attributesDivX = screenWidth - attributesDivWidth - screenWidth * 0.05
         local attributesDivY = love.graphics.getHeight() * 0.1
 
         local buttonWidth = attributesDivWidth * 0.4
-        local buttonHeight = 40
-        local buttonY = attributesDivY + attributesDivHeight - buttonHeight - 20
+        local buttonHeight = attributesDivHeight * 0.1
+        local buttonY = attributesDivY + attributesDivHeight - buttonHeight - 60
         local saveButtonX = attributesDivX + 10
         local deleteButtonX = attributesDivX + attributesDivWidth - buttonWidth - 10
 

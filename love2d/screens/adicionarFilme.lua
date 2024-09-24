@@ -64,6 +64,7 @@ function menu.load()
     -- Recebe todos os filmes a serem listados
     allFilms = returnAllObjects(filmFile)
     visibleFilmCount = math.floor(love.graphics.getHeight() * 0.5 / filmHeight)
+    selectedFilmIndex = nil
 
     -- Calcula a altura da barra de rolagem
     scrollbarHeight = math.max(visibleFilmCount / #allFilms * screenHeight * 0.5, 20)

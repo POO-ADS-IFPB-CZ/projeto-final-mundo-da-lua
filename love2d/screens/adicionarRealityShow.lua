@@ -172,6 +172,7 @@ function menu.mousepressed(x, y, button)
                 -- Agora você pode adicionar esse novo filme à lista de filmes ou salvar em arquivo
                 table.insert(allRealityShows, savingRS)
                 local actualFilm = newRealityShow(savingRS)
+                selectedRSIndex = nil
 
                 -- Adiciona o filme ao arquivo
                 addInFile(realityShowFile, actualFilm.getSerialized())

@@ -139,6 +139,9 @@ function drawAttributes(fields, inputFields, drawHalf)
 
     drawHalf = drawHalf or nil
 
+    local smallFont = love.graphics.newFont("fonts/zenKaku.ttf", 19.5)
+    love.graphics.setFont(smallFont)
+
     if not drawHalf then
         for i, field in ipairs(fields) do
             -- Espaçamento entre o texto e o campo
@@ -146,7 +149,7 @@ function drawAttributes(fields, inputFields, drawHalf)
             local fieldX = attributesDivX + 150
 
             -- Desenhar o texto com sombra
-            drawTextWithShadow(field.display .. ": ", textX, attributesDivY + 50 + (i - 1) * 40, attributesDivWidth - 20, "left")
+            drawTextWithShadow(field.display .. ": ", textX, attributesDivY + 60 + (i - 1) * 40, attributesDivWidth - 20, "left")
 
             -- Desenhar o campo preenchível
             love.graphics.setColor(1, 0.9, 0.76, 0.21)
@@ -155,9 +158,11 @@ function drawAttributes(fields, inputFields, drawHalf)
 
             -- Desenhar o valor do campo
             love.graphics.setColor(1, 1, 1)
-            love.graphics.printf(value, fieldX + 5, attributesDivY + 55 + (i - 1) * 40, attributesDivWidth - 170, "left")
+            love.graphics.printf(value, fieldX + 5, attributesDivY + 60 + (i - 1) * 40, attributesDivWidth - 170, "left")
         end
     end
+
+    love.graphics.setFont(myFont)
 end
 
 function drawButtons(selectedFilmIndex)

@@ -155,7 +155,7 @@ function drawAttributes(fields, inputFields, drawHalf)
 
             -- Desenhar o valor do campo
             love.graphics.setColor(1, 1, 1)
-            love.graphics.printf(value, fieldX + 5, attributesDivY + 60 + (i - 1) * 40, attributesDivWidth - 170, "left")
+            love.graphics.printf(value, fieldX + 5, attributesDivY + 55 + (i - 1) * 40, attributesDivWidth - 170, "left")
         end
     end
 end

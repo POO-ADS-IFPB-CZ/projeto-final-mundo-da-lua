@@ -135,9 +135,9 @@ function menu.mousepressed(x, y, button)
 
         -- Verificar se o clique foi em algum campo de texto da div de atributos
         for i, field in ipairs(fields) do
-            local fieldX = attributesDivX + 120
-            local fieldY = attributesDivY + 30 + (i - 1) * 40
-            local fieldWidth = attributesDivWidth - 130
+            local fieldX = attributesDivX + 150
+            local fieldY = attributesDivY + 60 + (i - 1) * 40
+            local fieldWidth = attributesDivWidth - 160
             local fieldHeight = 30
             if x > fieldX and x < fieldX + fieldWidth and y > fieldY and y < fieldY + fieldHeight then
                 currentField = field.key

@@ -176,6 +176,13 @@ function menu.mousepressed(x, y, button)
                 -- Adiciona o filme ao arquivo
                 addInFile(filmFile, actualFilm.getSerialized())
 
+                -- Atualizar a lista de filmes
+                allFilms = returnAllObjects(filmFile)
+
+                -- Recalcular a altura da barra de rolagem
+                scrollbarHeight = math.max(visibleFilmCount / #allFilms * screenHeight * 0.5, 20)
+                totalHeight = #allFilms * filmHeight
+
                 -- Os campos continuam editáveis, então não limpar os campos após salvar
             end
 
@@ -196,6 +203,13 @@ function menu.mousepressed(x, y, button)
 
                 alterFile(filmFile, savingFilm, allFilms[clickedIndex].nome, "filme")
 
+                -- Atualizar a lista de filmes
+                allFilms = returnAllObjects(filmFile)
+
+                -- Recalcular a altura da barra de rolagem
+                scrollbarHeight = math.max(visibleFilmCount / #allFilms * screenHeight * 0.5, 20)
+                totalHeight = #allFilms * filmHeight
+
                 for _, field in ipairs(fields) do
                     inputFields[field.key] = ""
                 end
@@ -210,6 +224,13 @@ function menu.mousepressed(x, y, button)
                 for _, field in ipairs(fields) do
                     inputFields[field.key] = ""
                 end
+
+                -- Atualizar a lista de filmes
+                allFilms = returnAllObjects(filmFile)
+
+                -- Recalcular a altura da barra de rolagem
+                scrollbarHeight = math.max(visibleFilmCount / #allFilms * screenHeight * 0.5, 20)
+                totalHeight = #allFilms * filmHeight
 
                 selectedFilmIndex = nil
             end

@@ -65,6 +65,7 @@ function menu.load()
     -- Recebe todos os filmes a serem listados
     allRealityShows = returnAllObjects(realityShowFile)
     visibleFilmCount = math.floor(love.graphics.getHeight() * 0.5 / filmHeight)
+    selectedRSIndex = nil
 
     -- Calcula a altura da barra de rolagem
     scrollbarHeight = math.max(visibleFilmCount / #allRealityShows * screenHeight * 0.5, 20)
@@ -172,10 +173,16 @@ function menu.mousepressed(x, y, button)
                 -- Agora você pode adicionar esse novo filme à lista de filmes ou salvar em arquivo
                 table.insert(allRealityShows, savingRS)
                 local actualFilm = newRealityShow(savingRS)
-                selectedRSIndex = nil
 
                 -- Adiciona o filme ao arquivo
                 addInFile(realityShowFile, actualFilm.getSerialized())
+
+                 -- Atualizar a lista de filmes
+                 allRealityShows = returnAllObjects(realityShowFile)
+
+                 -- Recalcular a altura da barra de rolagem
+                 scrollbarHeight = math.max(visibleFilmCount / #realityShowFile * screenHeight * 0.5, 20)
+                 totalHeight = #realityShowFile * filmHeight
 
                 -- Os campos continuam editáveis, então não limpar os campos após salvar
             end
@@ -197,6 +204,13 @@ function menu.mousepressed(x, y, button)
 
                 alterFile(realityShowFile, savingRS, allRealityShows[clickedIndex].nome, "realityShow")
 
+                -- Atualizar a lista de filmes
+                allRealityShows = returnAllObjects(realityShowFile)
+
+                -- Recalcular a altura da barra de rolagem
+                scrollbarHeight = math.max(visibleFilmCount / #realityShowFile * screenHeight * 0.5, 20)
+                totalHeight = #realityShowFile * filmHeight
+
                 for _, field in ipairs(fields) do
                     inputFields[field.key] = ""
                 end
@@ -211,6 +225,13 @@ function menu.mousepressed(x, y, button)
                 for _, field in ipairs(fields) do
                     inputFields[field.key] = ""
                 end
+
+                -- Atualizar a lista de filmes
+                allRealityShows = returnAllObjects(realityShowFile)
+
+                -- Recalcular a altura da barra de rolagem
+                scrollbarHeight = math.max(visibleFilmCount / #realityShowFile * screenHeight * 0.5, 20)
+                totalHeight = #realityShowFile * filmHeight
 
                 selectedRSIndex = nil
             end
